@@ -1,5 +1,5 @@
 Wymagania
-- Testy
+- Testy automatyczne
 - Funkcjonalności 4x3 (3 na osobe)
 - Github 
 - Wykres ganta/jira/trelo taski
