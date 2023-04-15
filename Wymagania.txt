@@ -1,0 +1,8 @@
+Wymagania
+- Testy
+- Funkcjonalności 4x3 (3 na osobe)
+- Github 
+- Wykres ganta/jira/trelo taski
+- Swagger do dokumentacji api
+
+Technologia NodeJS + Postgres
