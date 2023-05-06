@@ -1,0 +1,16 @@
+title Formularz kontaktowy
+
+participant Użytkownik
+participant Aplikacja
+participant Serwer
+participant Serwer poczty
+participant Baza danych
+
+Użytkownik->Aplikacja: Wypełnienie formularza kontaktowego
+Aplikacja->Serwer: Wysłanie żądania z danymi formularza
+Serwer->Baza danych: Zapisanie danych z formularza do bazy danych
+Baza danych-->Serwer: Potwierdzenie zapisania danych do bazy danych
+Serwer->Serwer poczty: Wysłanie wiadomości email z danymi formularza
+Serwer poczty-->Serwer: Potwierdzenie wysłania wiadomości email
+Serwer-->Aplikacja: Potwierdzenie wysłania wiadomości email
+Aplikacja->Użytkownik: Wyświetlenie potwierdzenia wysłania formularza
