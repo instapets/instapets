@@ -1,0 +1,15 @@
+title Newsletter - zapis do newslettera
+
+participant Użytkownik
+participant Aplikacja
+participant Baza danych
+participant Serwer poczty
+
+Użytkownik->Aplikacja: Wypełnienie formularza
+Aplikacja->Użytkownik: Wyświetlenie komunikatu o prośbie potwierdzenia adresu email
+Aplikacja->Serwer poczty: Wysłanie maila z prośbą o potwierdzenie
+Serwer poczty->Użytkownik: Wyświetlenie komunikatu o wysłaniu maila
+Użytkownik->Aplikacja: Potwierdzenie adresu email
+Aplikacja->Baza danych: Dodanie rekordu z adresem email
+Baza danych-->Aplikacja: Potwierdzenie zapisu
+Aplikacja->Użytkownik: Wyświetlenie komunikatu o zapisie do newslettera
