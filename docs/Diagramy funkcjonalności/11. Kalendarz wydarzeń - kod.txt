@@ -1,0 +1,28 @@
+title Kalendarz wydarzeń
+
+participant Użytkownik
+participant Aplikacja
+participant Baza Danych
+participant Serwer
+
+Użytkownik->Aplikacja: Wyświetlenie listy wydarzeń
+Aplikacja->Baza Danych: Pobranie wydarzeń z bazy danych
+Baza Danych-->Aplikacja: Wyświetlenie listy wydarzeń
+Aplikacja->Użytkownik: Wyświetlenie listy wydarzeń
+
+Użytkownik->Aplikacja: Pobranie wydarzeń z danego dnia
+Aplikacja->Baza Danych: Pobranie wydarzeń z bazy danych dla danego dnia
+Baza Danych-->Aplikacja: Wyświetlenie wydarzeń z danego dnia
+Aplikacja->Użytkownik: Wyświetlenie wydarzeń z danego dnia
+
+Użytkownik->Aplikacja: Dodanie wydarzenia
+Aplikacja->Baza Danych: Dodanie wydarzenia do bazy danych
+Baza Danych-->Aplikacja: Potwierdzenie dodania wydarzenia
+Aplikacja->Użytkownik: Wyświetlenie potwierdzenia dodania wydarzenia
+
+Użytkownik->Aplikacja: Dodanie miejsca wydarzenia
+Aplikacja->Serwer: Wysłanie żądania dodania miejsca wydarzenia
+Serwer->Baza Danych: Dodanie miejsca wydarzenia do bazy danych
+Baza Danych-->Serwer: Potwierdzenie dodania miejsca wydarzenia
+Serwer-->Aplikacja: Potwierdzenie dodania miejsca wydarzenia
+Aplikacja->Użytkownik: Wyświetlenie potwierdzenia dodania miejsca wydarzenia
