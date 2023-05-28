@@ -29,8 +29,8 @@ model Newsletter {
 
 model Ratings {
     id     Int     @id @default(autoincrement())
-    postId Int     @unique
-    userId String?
+    postId Int
+    userId String? @unique
     like   Int
     unlike Int
 }
