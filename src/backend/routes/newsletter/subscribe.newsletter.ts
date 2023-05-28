@@ -37,23 +37,31 @@ export default {
             return res.status(400).json({ errors: errors.array() })
         }
 
-        const insert = {
+        interface UserInsert {
+            email: string
+            userId: string | null
+            active: boolean
+            code: string
+        }
+
+        const insert: UserInsert = {
             email: req.body.email,
-            active: false,
             userId: null,
+            active: false,
             code: '',
         }
 
         // Sprawdzenie, czy zalogowany, jeśli tak to zapisz id przy rekordzie - pozwalamy mieć użytkownika zapisanego do newsletera na kilku mailach
-        if (req.headers.authorization) {
-            const token = req.headers.authorization?.replace('Bearer ', '')
-            if (token) {
-                const tokenData = verifyToken(token, SECRET)
-                if (tokenData.isValid) {
-                    insert.userId = tokenData.content.id
-                }
-            }
-        }
+        const userWithTheseEmail = await prisma.user.findFirst({
+            where: {
+                email: insert.email,
+            },
+        })
+
+        insert.userId =
+            userWithTheseEmail && userWithTheseEmail.id !== null
+                ? userWithTheseEmail.id
+                : null
 
         // Wygenerowanie kodu aktywacji
         insert.code = btoa(v4())
@@ -67,10 +75,7 @@ export default {
         await sendEmail({
             recipient: [insert.email],
             subject: 'Aktywuj newsletter Instapets',
-            message:
-                'Kliknij link, aby potwierdzić newsletter: <a href="http://localhost:3000/api/newsletter/confirm?code=' +
-                insert.code +
-                '">tutaj</a>',
+            message: `Kliknij link, aby potwierdzić newsletter: http://localhost:3000/api/newsletter/confirm?code=${insert.code}`,
         })
 
         res.status(200).json({ message: 'Ok' })

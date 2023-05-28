@@ -3,6 +3,7 @@ import { Prisma } from '@prisma/client'
 
 export type TPrismaErrorDescriptions = {
     uniqueConstraintFailed?: string
+    recordNotFound?: string
 }
 
 export type TPrismaErrorResponse = {
@@ -17,7 +18,10 @@ const getPrismaErrorResponse = (message?: string): TPrismaErrorResponse => {
     }
 }
 
-export const checkPrismaError = (err: unknown, messages?: TPrismaErrorDescriptions): TPrismaErrorResponse => {
+export const checkPrismaError = (
+    err: unknown,
+    messages?: TPrismaErrorDescriptions,
+): TPrismaErrorResponse => {
     const response = {
         status: StatusCodes.INTERNAL_SERVER_ERROR,
         message: ReasonPhrases.INTERNAL_SERVER_ERROR,
@@ -29,6 +33,8 @@ export const checkPrismaError = (err: unknown, messages?: TPrismaErrorDescriptio
         switch (code) {
             case 'P2002':
                 return getPrismaErrorResponse(messages?.uniqueConstraintFailed)
+            case 'P2025':
+                return getPrismaErrorResponse(messages?.recordNotFound)
         }
     }
 
