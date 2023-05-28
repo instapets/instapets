@@ -6,6 +6,7 @@ import loginUser from './user/login.user'
 import subscribeNewsletter from './newsletter/subscribe.newsletter'
 import confirmNewsletter from './newsletter/confirm.newsletter'
 import addRating from './rating/add.rating'
+import sendContact from './contact/send.contact'
 
 const router = express.Router()
 
@@ -22,6 +23,7 @@ const apiRoutes = [
     subscribeNewsletter,
     confirmNewsletter,
     addRating,
+    sendContact,
 ]
 
 apiRoutes.forEach((route) =>
