@@ -5,6 +5,7 @@ import postUser from './user/post.user'
 import loginUser from './user/login.user'
 import subscribeNewsletter from './newsletter/subscribe.newsletter'
 import confirmNewsletter from './newsletter/confirm.newsletter'
+import addRating from './rating/add.rating'
 
 const router = express.Router()
 
@@ -20,6 +21,7 @@ const apiRoutes = [
     loginUser,
     subscribeNewsletter,
     confirmNewsletter,
+    addRating,
 ]
 
 apiRoutes.forEach((route) =>

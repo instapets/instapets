@@ -26,3 +26,11 @@ model Newsletter {
     userId String?
     user   User?   @relation(fields: [userId], references: [id])
 }
+
+model Ratings {
+    id     Int     @id @default(autoincrement())
+    postId Int     @unique
+    userId String?
+    like   Int
+    unlike Int
+}

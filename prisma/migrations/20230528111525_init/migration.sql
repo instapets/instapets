@@ -1,0 +1,7 @@
+-- CreateTable
+CREATE TABLE "Ratings" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "postId" INTEGER NOT NULL,
+    "like" INTEGER NOT NULL,
+    "unlike" INTEGER NOT NULL
+);
