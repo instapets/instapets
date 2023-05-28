@@ -2,7 +2,7 @@ import express from 'express'
 import helmet from 'helmet'
 import cors from 'cors'
 import limit from 'express-rate-limit'
-import {CorsOptions} from 'cors'
+import { CorsOptions } from 'cors'
 import router from './routes'
 
 export type TServerConfig = {
@@ -14,13 +14,13 @@ export type TServerConfig = {
     }
 }
 
-export const startServer = ({port, corsOptions, limiter}: TServerConfig) => {
+export const startServer = ({ port, corsOptions, limiter }: TServerConfig) => {
     const app = express()
 
     app.use(helmet())
     app.use(cors(corsOptions))
     app.disable('x-powered-by')
-    app.use(limit({windowMs: limiter.time, max: limiter.max}))
+    app.use(limit({ windowMs: limiter.time, max: limiter.max }))
     app.use(express.json())
 
     app.use(router)

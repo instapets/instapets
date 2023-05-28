@@ -1,4 +1,4 @@
-import {RequestHandler, Request, Response} from 'express'
+import { RequestHandler, Request, Response } from 'express'
 
 export type TRoute = {
     method: 'get' | 'post' | 'put' | 'patch' | 'delete'

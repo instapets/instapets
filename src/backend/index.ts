@@ -1,6 +1,7 @@
-import {startServer} from './server'
-import {config} from './config'
-import {prisma} from './database'
+import { startServer } from './server'
+import { config } from './config'
+import { prisma } from './database'
+import 'dotenv/config'
 
 async function main() {
     await startServer(config.server)

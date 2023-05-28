@@ -1,8 +1,8 @@
-import {Request, Response, NextFunction} from 'express'
-import {verifyToken} from './jwt.utils'
-import {StatusCodes, ReasonPhrases} from 'http-status-codes'
+import { Request, Response, NextFunction } from 'express'
+import { verifyToken } from './jwt.utils'
+import { StatusCodes, ReasonPhrases } from 'http-status-codes'
 
-const SECRET = (process.env.TOKEN_SECRET as string) ?? 'XYZ'
+const SECRET = (process.env.SECRET_KEY as string) ?? 'XYZ'
 
 export const authorize = (req: Request, res: Response, next: NextFunction) => {
     const token = req.headers.authorization

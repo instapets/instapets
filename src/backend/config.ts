@@ -1,4 +1,4 @@
-import {TServerConfig} from './server'
+import { TServerConfig } from './server'
 
 export type TEnv = 'production' | 'test' | 'development'
 
@@ -15,8 +15,7 @@ export const config: TConfig = {
     env,
     server: {
         port: API_PORT,
-        corsOptions:
-            env === 'development' ? {origin: 'localhost:' + API_PORT} : {},
+        corsOptions: env === 'development' ? { origin: 'localhost:' + API_PORT } : {},
         limiter: {
             time: 15 * 60 * 1000,
             max: 250,

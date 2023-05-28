@@ -1,7 +1,7 @@
-import {Request, Response} from 'express'
-import {validationResult} from 'express-validator'
-import {StatusCodes} from 'http-status-codes'
-import {checkPrismaError, TPrismaErrorDescriptions} from './prisma.utils'
+import { Request, Response } from 'express'
+import { validationResult } from 'express-validator'
+import { StatusCodes } from 'http-status-codes'
+import { checkPrismaError, TPrismaErrorDescriptions } from './prisma.utils'
 
 export type TRequestData<Entity> = {
     req: Request
@@ -19,19 +19,17 @@ export type TCustomError = {
 }
 
 export const handleRequest = async <Entity>({
-                                                req,
-                                                res,
-                                                execute,
-                                                responseSuccessStatus,
-                                                responseFailStatus,
-                                                messages,
-                                            }: TRequestData<Entity>) => {
+    req,
+    res,
+    execute,
+    responseSuccessStatus,
+    responseFailStatus,
+    messages,
+}: TRequestData<Entity>) => {
     const errors = validationResult(req)
 
     if (!errors.isEmpty()) {
-        return res
-            .status(responseFailStatus ?? StatusCodes.BAD_REQUEST)
-            .json({errors: errors.array()})
+        return res.status(responseFailStatus ?? StatusCodes.BAD_REQUEST).json({ errors: errors.array() })
     }
 
     try {
@@ -47,8 +45,8 @@ export const handleRequest = async <Entity>({
                 errors: [parsedError.message],
             })
         } else {
-            console.log(err);
-            console.log(messages);
+            console.log(err)
+            console.log(messages)
             const response = checkPrismaError(err, messages)
             res.status(response.status).json({
                 errors: [response.message],

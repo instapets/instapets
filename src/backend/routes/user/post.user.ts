@@ -1,12 +1,12 @@
-import {Request, Response} from 'express'
-import {body} from 'express-validator'
-import {ReasonPhrases, StatusCodes} from 'http-status-codes'
-import {v4} from 'uuid'
-import {prisma} from '../../database'
-import {TRoute} from '../types'
-import {handleRequest, TCustomError} from '../../utils/request.utils'
-import {createHash} from '../../utils/hash.utils'
-import {authorize} from '../../utils/middleware.utils'
+import { Request, Response } from 'express'
+import { body } from 'express-validator'
+import { ReasonPhrases, StatusCodes } from 'http-status-codes'
+import { v4 } from 'uuid'
+import { prisma } from '../../database'
+import { TRoute } from '../types'
+import { handleRequest, TCustomError } from '../../utils/request.utils'
+import { createHash } from '../../utils/hash.utils'
+import { authorize } from '../../utils/middleware.utils'
 
 const SALT = (process.env.PASSWORD_SALT as string) ?? 'XYZ'
 
@@ -24,11 +24,10 @@ export default {
             res,
             responseSuccessStatus: StatusCodes.CREATED,
             responseFailStatus: StatusCodes.UNAUTHORIZED,
-            messages: {uniqueConstraintFailed: 'Email must be unique.'},
+            messages: { uniqueConstraintFailed: 'Email must be unique.' },
             execute: async () => {
-                const {email, name, password} = req.body
+                const { email, name, password } = req.body
                 const passwordHash = createHash(password, SALT)
-
 
                 return prisma.user.create({
                     data: {
@@ -38,7 +37,6 @@ export default {
                         password: passwordHash,
                     },
                 })
-
             },
         }),
 } as TRoute

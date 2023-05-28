@@ -134,3 +134,9 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+# Do not use npm
+package-lock.json
+
+# Database
+prisma/instapets.db
+prisma/instapets.db-journal

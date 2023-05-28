@@ -1,5 +1,5 @@
-import {StatusCodes, ReasonPhrases} from 'http-status-codes'
-import { Prisma } from '@prisma/client';
+import { StatusCodes, ReasonPhrases } from 'http-status-codes'
+import { Prisma } from '@prisma/client'
 
 export type TPrismaErrorDescriptions = {
     uniqueConstraintFailed?: string
@@ -17,10 +17,7 @@ const getPrismaErrorResponse = (message?: string): TPrismaErrorResponse => {
     }
 }
 
-export const checkPrismaError = (
-    err: unknown,
-    messages?: TPrismaErrorDescriptions,
-): TPrismaErrorResponse => {
+export const checkPrismaError = (err: unknown, messages?: TPrismaErrorDescriptions): TPrismaErrorResponse => {
     const response = {
         status: StatusCodes.INTERNAL_SERVER_ERROR,
         message: ReasonPhrases.INTERNAL_SERVER_ERROR,
@@ -31,8 +28,6 @@ export const checkPrismaError = (
 
         switch (code) {
             case 'P2002':
-                console.log('a');
-                console.log(getPrismaErrorResponse(messages?.uniqueConstraintFailed));
                 return getPrismaErrorResponse(messages?.uniqueConstraintFailed)
         }
     }
