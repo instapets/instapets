@@ -138,5 +138,5 @@ dist
 package-lock.json
 
 # Database
-prisma/instapets.db
-prisma/instapets.db-journal
+prisma/*.db
+prisma/*.db-journal

@@ -13,15 +13,30 @@ export async function sendEmail(data: TSendEmailObject) {
         region: process.env.AWS_SES_REGION,
     })
 
-    // Mail celowo zawsze jest wysyłany do adresu z ENV, z uwagi na to AMAZON SES w wersji SANDBOX zezwala na wysyłanie maili tylko do zdefiniowanej i zweryfikowanej listy maili
-    const hookEmail = process.env.AWS_SES_SENDER_EMAIL_ADDRESS
-        ? process.env.AWS_SES_SENDER_EMAIL_ADDRESS.toString()
-        : ''
+    if (
+        Object.keys(data.recipient).length === 0 ||
+        !data.subject ||
+        !data.message
+    ) {
+        return false
+    }
+
+    /*
+     Jeśli podano emial to zastąp go, mail celowo jest zastępowywany na maila z ENV,
+     z uwagi na to AMAZON SES w wersji SANDBOX zezwala na wysyłanie maili
+     tylko do zdefiniowanej i zweryfikowanej listy maili
+    */
+    if (data.recipient) {
+        data.recipient = []
+        data.recipient[0] = process.env.AWS_SES_SENDER_EMAIL_ADDRESS
+            ? process.env.AWS_SES_SENDER_EMAIL_ADDRESS.toString()
+            : ''
+    }
 
     const params = {
         Source: process.env.AWS_SES_SENDER_EMAIL_ADDRESS,
         Destination: {
-            ToAddresses: [hookEmail],
+            ToAddresses: data.recipient,
         },
         Message: {
             Subject: {
@@ -49,6 +64,7 @@ export async function sendEmail(data: TSendEmailObject) {
             'Wystąpił błąd podczas wysyłania wiadomości e-mail:',
             error,
         )
-        return false
     }
+
+    return false
 }

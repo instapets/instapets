@@ -73,7 +73,7 @@ export default {
 
         // Wysłanie maila Uwaga z racji użycia SANDBOXA maile wysyłane są tylko na mail dev
         await sendEmail({
-            recipient: [insert.email],
+            recipient: [],
             subject: 'Aktywuj newsletter Instapets',
             message: `Kliknij link, aby potwierdzić newsletter: http://localhost:3000/api/newsletter/confirm?code=${insert.code}`,
         })
