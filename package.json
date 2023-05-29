@@ -9,7 +9,8 @@
     "be-build": "tsc -p tsconfig.json",
     "be-dev": "npx nodemon src/backend/index.ts",
     "be-start": "node dist/backend/index.js",
-    "test": "jest"
+    "test": "jest",
+    "test-coverage": "npx jest --coverage"
   },
   "dependencies": {
     "@aws-sdk/client-ses": "3.341.0",
