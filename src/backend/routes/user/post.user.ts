@@ -13,11 +13,7 @@ const SALT = (process.env.PASSWORD_SALT as string) ?? 'XYZ'
 export default {
     method: 'post',
     path: '/api/user',
-    validators: [
-        authorize,
-        body('email').isEmail(),
-        body('password').not().isEmpty(),
-    ],
+    validators: [authorize, body('email').isEmail(), body('password').not().isEmpty()],
     handler: async (req: Request, res: Response) =>
         handleRequest({
             req,

@@ -1,4 +1,4 @@
-import { sendEmail } from '../src/backend/utils/mail.utils'
+import { sendEmail } from '../../src/backend/utils/mail.utils'
 import 'dotenv/config'
 
 describe('sendEmail', () => {
@@ -9,9 +9,7 @@ describe('sendEmail', () => {
     })
 
     it('should send an email', async () => {
-        const email = process.env.AWS_SES_SENDER_EMAIL_ADDRESS
-            ? process.env.AWS_SES_SENDER_EMAIL_ADDRESS
-            : ''
+        const email = process.env.AWS_SES_SENDER_EMAIL_ADDRESS ? process.env.AWS_SES_SENDER_EMAIL_ADDRESS : ''
 
         const data = {
             recipient: [email],

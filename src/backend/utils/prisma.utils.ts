@@ -18,10 +18,7 @@ const getPrismaErrorResponse = (message?: string): TPrismaErrorResponse => {
     }
 }
 
-export const checkPrismaError = (
-    err: unknown,
-    messages?: TPrismaErrorDescriptions,
-): TPrismaErrorResponse => {
+export const checkPrismaError = (err: unknown, messages?: TPrismaErrorDescriptions): TPrismaErrorResponse => {
     const response = {
         status: StatusCodes.INTERNAL_SERVER_ERROR,
         message: ReasonPhrases.INTERNAL_SERVER_ERROR,

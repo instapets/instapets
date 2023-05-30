@@ -25,7 +25,7 @@ export const startServer = ({ port, corsOptions, limiter }: TServerConfig) => {
 
     app.use(router)
 
-    app.listen(port, () => {
+    return app.listen(port, () => {
         console.log(`App listening on port ${port}`)
     })
 }

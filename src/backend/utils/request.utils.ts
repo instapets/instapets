@@ -18,20 +18,11 @@ export type TCustomError = {
     message: string
 }
 
-export const handleRequest = async <Entity>({
-    req,
-    res,
-    execute,
-    responseSuccessStatus,
-    responseFailStatus,
-    messages,
-}: TRequestData<Entity>) => {
+export const handleRequest = async <Entity>({ req, res, execute, responseSuccessStatus, responseFailStatus, messages }: TRequestData<Entity>) => {
     const errors = validationResult(req)
 
     if (!errors.isEmpty()) {
-        return res
-            .status(responseFailStatus ?? StatusCodes.BAD_REQUEST)
-            .json({ errors: errors.array() })
+        return res.status(responseFailStatus ?? StatusCodes.BAD_REQUEST).json({ errors: errors.array() })
     }
 
     try {

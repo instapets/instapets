@@ -1,0 +1,16 @@
+insert into main.Calendar (id, name, desc, dateRange, dateStart, dateEnd, place)
+values  (1, 'Wydarzenie 8 Maja', 'Opis wydarzenia', 0, '1683540000000', '1683540610000', 'Miejsce 1'),
+        (2, 'Wydarzenie 9 Maja', 'Opis wydarzenia', 0, '1683626400000', '1683627010000', 'Miejsce 1'),
+        (3, 'Wydarzenie 10 Maja', 'Opis wydarzenia', 0, '1683712800000', '1683713410000', 'Miejsce 1'),
+        (4, 'Wydarzenie 11 Maja', 'Opis wydarzenia', 0, '1683799200000', '1683799810000', 'Miejsce 1'),
+        (5, 'Wydarzenie 12 Maja', 'Opis wydarzenia', 0, '1683885600000', '1683886210000', 'Miejsce 1'),
+        (6, 'Wydarzenie 13 Maja', 'Opis wydarzenia', 0, '1683972000000', '1683972610000', 'Miejsce 1'),
+        (7, 'Wydarzenie 14 Maja', 'Opis wydarzenia', 0, '1684058400000', '1684059010000', 'Miejsce 1'),
+        (8, 'Wydarzenie 15 Maja', 'Opis wydarzenia', 0, '1684144800000', '1684145410000', 'Miejsce 1'),
+        (9, 'Wydarzenie 16 Maja', 'Opis wydarzenia', 0, '1684231200000', '1684231810000', 'Miejsce 1'),
+        (10, 'Wydarzenie 17 Maja', 'Opis wydarzenia', 0, '1684317600000', '1684318210000', 'Miejsce 1'),
+        (11, 'Wydarzenie 18 Maja', 'Opis wydarzenia', 0, '1684404000000', '1684404610000', 'Miejsce 1'),
+        (12, 'Wydarzenie 6-11 Maja', 'Opis wydarzenia', 1, '1683367200000', '1683799810000', 'Miejsce 1'),
+        (13, 'Wydarzenie 10-14 Maja', 'Opis wydarzenia', 1, '1683712800000', '1684059010000', 'Miejsce 1'),
+        (14, 'Wydarzenie 12-13 Maja', 'Opis wydarzenia', 1, '1683885600000', '1683972610000', 'Miejsce 1'),
+        (15, 'Wydarzenie 16-18 Maja', 'Opis wydarzenia', 1, '1684231200000', '1684404610000', 'Miejsce 1');

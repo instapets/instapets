@@ -22,11 +22,7 @@ export default {
 
         // Wysłanie maila Uwaga z racji użycia SANDBOXA maile wysyłane są tylko na mail dev
         await sendEmail({
-            recipient: [
-                process.env.AWS_SES_SENDER_EMAIL_ADDRESS
-                    ? process.env.AWS_SES_SENDER_EMAIL_ADDRESS
-                    : '',
-            ],
+            recipient: [process.env.AWS_SES_SENDER_EMAIL_ADDRESS ? process.env.AWS_SES_SENDER_EMAIL_ADDRESS : ''],
             subject: 'Nowe zapytanie z formularza kontaktowego',
             message: `${req.body.name} ${req.body.surname} (${req.body.email}), ${req.body.message}`,
         })

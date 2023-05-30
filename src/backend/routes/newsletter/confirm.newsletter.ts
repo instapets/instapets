@@ -39,9 +39,7 @@ export default {
                 })
             } catch (error) {
                 const responseStatus = checkPrismaError(error)
-                return res
-                    .status(responseStatus.status)
-                    .json(responseStatus.message)
+                return res.status(responseStatus.status).json(responseStatus.message)
             }
         }
 

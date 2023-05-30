@@ -25,9 +25,7 @@ export default {
                 const { email, password } = req.body
                 const passwordHash = createHash(password, SALT)
                 const user = await prisma.user.findFirst({ where: { email } })
-                const passwordValid = user
-                    ? user.password === passwordHash
-                    : false
+                const passwordValid = user ? user.password === passwordHash : false
                 if (!user || !passwordValid)
                     throw {
                         status: StatusCodes.UNAUTHORIZED,

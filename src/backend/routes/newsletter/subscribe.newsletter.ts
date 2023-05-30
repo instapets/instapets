@@ -4,7 +4,6 @@ import { TRoute } from '../types'
 import { sendEmail } from '../../utils/mail.utils'
 import { body, validationResult } from 'express-validator'
 import { prisma } from '../../database'
-import { verifyToken } from '../../utils/jwt.utils'
 import { v4 } from 'uuid'
 
 const SECRET = (process.env.SECRET_KEY as string) ?? 'XYZ'
@@ -58,10 +57,7 @@ export default {
             },
         })
 
-        insert.userId =
-            userWithTheseEmail && userWithTheseEmail.id !== null
-                ? userWithTheseEmail.id
-                : null
+        insert.userId = userWithTheseEmail && userWithTheseEmail.id !== null ? userWithTheseEmail.id : null
 
         // Wygenerowanie kodu aktywacji
         insert.code = btoa(v4())

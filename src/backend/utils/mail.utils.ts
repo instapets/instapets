@@ -13,11 +13,7 @@ export async function sendEmail(data: TSendEmailObject) {
         region: process.env.AWS_SES_REGION,
     })
 
-    if (
-        Object.keys(data.recipient).length === 0 ||
-        !data.subject ||
-        !data.message
-    ) {
+    if (Object.keys(data.recipient).length === 0 || !data.subject || !data.message) {
         return false
     }
 
@@ -28,9 +24,7 @@ export async function sendEmail(data: TSendEmailObject) {
     */
     if (data.recipient) {
         data.recipient = []
-        data.recipient[0] = process.env.AWS_SES_SENDER_EMAIL_ADDRESS
-            ? process.env.AWS_SES_SENDER_EMAIL_ADDRESS.toString()
-            : ''
+        data.recipient[0] = process.env.AWS_SES_SENDER_EMAIL_ADDRESS ? process.env.AWS_SES_SENDER_EMAIL_ADDRESS.toString() : ''
     }
 
     const params = {
@@ -53,17 +47,11 @@ export async function sendEmail(data: TSendEmailObject) {
     try {
         const response = await sesClient.send(new SendEmailCommand(params))
         if (response) {
-            console.log(
-                'Wiadomość e-mail została wysłana. ID wiadomości:',
-                response.MessageId,
-            )
+            console.log('Wiadomość e-mail została wysłana. ID wiadomości:', response.MessageId)
             return true
         }
     } catch (error) {
-        console.error(
-            'Wystąpił błąd podczas wysyłania wiadomości e-mail:',
-            error,
-        )
+        console.error('Wystąpił błąd podczas wysyłania wiadomości e-mail:', error)
     }
 
     return false

@@ -22,9 +22,19 @@ model Newsletter {
     id     Int     @id @default(autoincrement())
     email  String  @unique
     active Boolean @default(false)
-    code   String?  @unique
+    code   String? @unique
     userId String?
     user   User?   @relation(fields: [userId], references: [id])
+}
+
+model Calendar {
+    id        Int      @id @default(autoincrement())
+    name      String
+    desc      String
+    dateRange Boolean  @default(false)
+    dateStart DateTime
+    dateEnd   DateTime
+    place     String
 }
 
 model Ratings {
