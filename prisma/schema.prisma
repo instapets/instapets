@@ -44,3 +44,18 @@ model Ratings {
     like   Int
     unlike Int
 }
+
+model Animal {
+  id       String   @id @default(autoincrement())
+  owner    String
+  name     String
+  sex      String
+  species  String
+  weight   Float
+  height   Float
+  age      Int
+  color    String
+  desc     String?
+  image    String?
+  createdAt DateTime @default(now())
+}
