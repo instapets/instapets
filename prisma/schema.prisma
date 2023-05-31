@@ -59,3 +59,12 @@ model Animal {
   image    String?
   createdAt DateTime @default(now())
 }
+
+model Veterinarian {
+  id        String   @id @default(autoincrement())
+  name      String
+  province  String
+  city      String
+  services  String[]
+  rating    Float
+}
