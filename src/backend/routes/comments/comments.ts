@@ -12,22 +12,20 @@ class CommentController {
         return this.comments.filter((comment) => comment.postId === postId)
     }
 
-    createComment(comment: Comment): Comment {
-        const newComment: Comment = {
+    createComment(comment: { createdAt: Date; id: string; postId: string; content: string }): Comment {
+        const newComment: { createdAt: Date; id: string; postId: string; content: string } = {
             id: Math.random().toString(),
             content: comment.content,
             postId: comment.postId,
             createdAt: new Date(),
         }
 
-        this.comments.push(newComment)
-        return newComment
+        this.comments.push(<Comment>newComment)
+        return <Comment>newComment
     }
 
     updateComment(commentId: string, updatedContent: string): Comment | null {
-        const comment = this.comments.find(
-            (comment) => comment.id === commentId,
-        )
+        const comment = this.comments.find((comment) => comment.id === commentId)
 
         if (!comment) {
             return null // Comment not found
@@ -38,9 +36,7 @@ class CommentController {
     }
 
     deleteComment(commentId: string): boolean {
-        const commentIndex = this.comments.findIndex(
-            (comment) => comment.id === commentId,
-        )
+        const commentIndex = this.comments.findIndex((comment) => comment.id === commentId)
 
         if (commentIndex === -1) {
             return false // Comment not found
@@ -53,7 +49,7 @@ class CommentController {
 
 const commentController = new CommentController()
 
-const newComment: Comment = {
+const newComment: { createdAt: Date; id: string; postId: string; content: string } = {
     id: '',
     content: 'Nowy komentarz.',
     postId: '123',
@@ -66,10 +62,7 @@ console.log('Utworzony komentarz:', createdComment)
 const commentsForPost = commentController.getAllCommentsForPost('123')
 console.log('Wszystkie komentarze:', commentsForPost)
 
-const updatedComment = commentController.updateComment(
-    createdComment.id,
-    'Zaktualizowana zawartość komentarza',
-)
+const updatedComment = commentController.updateComment(createdComment.id, 'Zaktualizowana zawartość komentarza')
 console.log('Zaktualizowany komentarz:', updatedComment)
 
 const isDeleted = commentController.deleteComment(createdComment.id)
